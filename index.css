@@ -1,0 +1,428 @@
+:root {
+    --background-color: #1c1c1c; /* 深色背景 */
+    --background-deep-color:#2b2b2b;
+    --text-color: #e0e0e0; /* 浅色文本 */
+    --list-background-color: #2b2b2b; /* 列表背景 */
+    --list-item-background-color: #3c3c3b; /* 列表项背景 */
+    --list-item-hover-background-color: #2c2b2b; /* 列表项悬停背景 */
+    --header-background-color: #2a2a2a; /* 深灰色头部 */
+    --header-text-color: #ffffff; /* 头部文本颜色 */
+    --column-background-color: #2e2e2e; /* 深色列背景 */
+    --modal-background-color: #3a3a3a; /* 深色模态框 */
+    --border-color: #444444; /* 深色边框 */
+    --button-background-color: #194153; /* 深绿色按钮 */
+    --button-hover-color: #144711;
+    --button-hover-high-color: #5e3a00;
+    --hover-border-color: #144711; /* 悬停效果颜色（亮绿色） */
+    --dropdown-background-color: #2e2e2e; /* 深色下拉框 */
+    --scrollbar-track-color: #2a2a2a; /* 滚动条轨道 */
+    --scrollbar-thumb-color: #555555; /* 滚动条滑块 */
+    --scrollbar-thumb-hover-color: #777777; /* 滚动条滑块悬停时的颜色 */
+    --title-color:#4eaeae; /* 标题颜色 */
+}
+
+h1,h2,h3,h4,h5,h6 {
+    color: var(--title-color);
+}
+
+button,select,textarea{
+    
+    border-radius: 5px; /* 设置圆角 */
+    font-size: small;
+}
+
+body {
+    font-family: 'Arial', sans-serif; /* 首选微软雅黑，备用宋体和Arial */
+
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    width: 100%;
+    height: 100%;
+}
+label{
+    font-size: smaller;
+    font-style: italic;
+    
+}
+.header {
+    background-color: var(--header-background-color);
+    color: var(--header-text-color);
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.container {
+    display: flex;
+    height: calc(100vh - 50px);
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    /* padding: 10px; */
+    border-right: 1px solid var(--border-color);
+    box-sizing: border-box;
+    position: relative;
+    background-color: var(--column-background-color);
+    overflow-y: auto;
+}
+
+.api-providers {
+    margin-right: 5px;
+}
+
+.prompt-modal {
+    display: none;
+    position: absolute;
+    right: 2px;
+    height: calc(100% - 40px);
+    top: 38px;
+    background-color: var(--modal-background-color);
+    border: 1px solid #888;
+    padding: 20px;
+    z-index: 1000;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    color: var(--text-color);
+}
+
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 999;
+}
+
+.editable {
+    padding: 10px;
+    background-color: var(--background-deep-color);
+    color: var(--text-color);
+    outline: none;
+    border: none;
+    font-size: large !important;
+}
+
+#editable-content {
+    height: calc(100% - 75px);
+    width: calc(100% - 20px);
+}
+
+#editable-content:focus {
+    outline: none;
+    border: none;
+}
+
+.output {
+    margin-top: 10px;
+    color: var(--text-color);
+}
+
+.input-float-btns {
+    padding: 5px;
+    position: sticky;
+    top: 10px;
+    right: 10px;
+    height: 25px;
+    color: var(--header-text-color);
+    border: none;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+button {
+    background-color: var(--button-background-color);
+    border: none;
+    border-bottom: 2px solid var(--button-background-color);
+    color: var(--header-text-color);
+    padding: 5px 10px;
+    cursor: pointer;
+    box-sizing:content-box;
+}
+
+#clear-btn {
+    margin-right: 10px;
+}
+
+.editable:focus {
+    outline: none;
+    border: none;
+}
+/* 
+#ai-start {
+    background-color: var(--button-background-color);
+    color: var(--header-text-color);
+} */
+
+
+button:hover {
+    /* background-color: var(--button-hover-color); */
+    background-color: var(--button-hover-high-color);
+    color: var(--text-color);
+    border-color: var(--border-color);
+}
+.hover {
+    border-left: 3px solid var(--button-hover-color) !important;
+    color: var(--text-color);
+}
+
+select {
+    background-color: var(--dropdown-background-color); /* 设置背景色 */
+    color: var(--text-color); /* 设置文本颜色 */
+    border: 1px solid var(--border-color); /* 设置边框 */
+    padding: 4px; /* 设置内边距 */
+    appearance: none; /* 去掉默认样式 */
+}
+
+
+
+input {
+    padding: 5px;
+    background-color: var(--input-background-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+input:hover {
+    background-color: var(--input-hover-color);
+}
+
+input:focus {
+    outline: none;
+    border: 1px solid var(--input-focus-color);
+
+}
+.column p {
+    border: 1px solid #21262d00;
+    padding: 3px;
+}
+
+.output p {
+    position: relative;
+}
+
+.loading:after {
+    content: "";
+    position: absolute;
+    bottom: 1px;
+    right: 1px;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    border: 3px solid #943434;
+    border-top: 3px solid #ff0000;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    box-sizing: border-box;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+#ai-output-column p {
+    position: relative;
+}
+
+.floatmenu {
+    position: absolute;
+    top: -15px;
+    right: 0;
+    padding: 1px;
+    color: #000;
+    border: none;
+    height: 15px;
+}
+
+.floatmenu button {
+    padding: 1px;
+    background-color: #eee;
+}
+
+.floatmenu button:hover {
+    background-color: #ddd;
+}
+
+/* 自定义滚动条 */
+::-webkit-scrollbar {
+    width: 2px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--scrollbar-track-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb-color);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover-color);
+}
+
+/* prompt list */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0, 0, 0, 0.4); 
+}
+
+.modal-content {
+    padding: 40px 0;
+    background-color: var(--modal-background-color);
+    right: 2px;
+    position: absolute;
+    top: 39px;
+    padding: 10px;
+    border: 1px solid #888;
+    width: 80%; 
+    max-width: 800px;
+    height: calc(100% - 40px);
+    display: flex;
+    flex-direction: column;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 18px;
+    font-weight: bold;
+    position: absolute;
+    right: 20px;
+}
+
+.close:hover,
+.close:focus {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#promptList {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+#promptList li {
+    list-style: none;
+    box-sizing: border-box;
+    padding: 5px 50px 5px 5px;
+    display: flex;
+    justify-content: space-between;
+    min-height: 50px;
+    position: relative;
+    background-color: var(--list-item-background-color);
+    border-radius: 4px;
+}
+
+#promptList li .group {
+    display: none;
+    height: 30px;
+    position: absolute;
+    right: 2px;
+    top: 2px;
+}
+
+#promptList li:hover .group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+
+#promptList button {
+    padding: 4px;
+    font-size:xx-small;
+    margin: 0 auto;
+    font-size: 10px;
+}
+
+#promptList button:hover {
+    background-color: var(--button-hover-high-color);
+    color: var(--text-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+#promptList li:hover {
+    border: 1px solid var(--border-color);
+    background-color: var(--list-item-hover-background-color);
+    color: var(--text-color);
+}
+
+#promptInput {
+    width: 80%;
+    height: 60px;
+    border: none; /* 去掉边框 */
+    resize: none; /* 禁止调整大小 */
+    outline: none; /* 去掉聚焦时的边框 */
+    padding: 10px; /* 内边距 */
+    box-shadow: none; /* 去掉阴影 */
+    background-color: var(--column-background-color);
+    overflow-y: auto;
+}
+
+#promptInput::placeholder {
+    color: #aaa; /* 占位符颜色 */
+}
+
+.promptInputArea {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.group button {
+    display: flex;
+    flex-direction: row;
+}
+
+span[startIndex][endIndex]:hover {
+    text-decoration: underline; /* 添加下划线 */
+}
+textarea, .editable{
+    font-family: 'KaiTi','Microsoft YaHei',  'Arial', sans-serif;
+    font-size: medium;
+
+}
+
+textarea {
+    font-size: larger;
+    outline: none;
+    border: none; /* 去掉边框 */
+    resize: none; /* 禁止调整大小 */
+    outline: none; /* 去掉聚焦时的边框 */
+    padding: 10px; /* 内边距 */
+    box-shadow: none; /* 去掉阴影 */
+    background-color: var(--column-background-color);
+    overflow-y: auto;
+    color: var(--text-color);
+    font-size: medium;
+    
+}
+
+textarea:focus {
+    outline: none;
+    border: none;
+}

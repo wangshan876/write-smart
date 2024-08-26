@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 模型选择页面</title>
+    <link rel="stylesheet" href="index.css">
+    <script type="module" src="index.js"></script>
+    <script type="module" src="./scripts/prompt-list.mjs"></script>
+</head>
+
+<body>
+
+    <div class="header">
+        <div style="display: flex;">
+            <div class="api-providers">
+                <label for="api-select">服务提供商:</label>
+                <select id="api-select">
+                    <option value="ollama">ollama</option>
+                    <option value="deepseek" selected>deepseek</option>
+                </select>
+            </div>
+            <div id="ollama-models-select" style="display: none;">
+                <label for="model-select">ollama模型:</label>
+                <select id="model-select"></select>
+            </div>
+            <div id="deepseek-apikey-input" style="display: none;">
+                <label for="apikey">deepseek apikey:</label>
+                <input id="apikey" type="password"></input>
+            </div>
+        </div>
+        <div>
+            <button id="open-modal">prompt列表</button>
+            <button id="set-prompt-btn">当前prompt</button>
+
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="column">
+            <div class="input-float-btns">
+                <select name="input-mode" id="input-mode" style="margin-right: 10px;">
+                    <option value="0">粘贴分段</option>
+                    <option value="1">逐句</option>
+                    <option value="2">全文</option>
+                    <option value="3">默写</option>
+                </select>
+                <button id="clear-btn">重置</button>
+                <button id="ai-start">开始</button>
+            </div>
+            <textarea style="display: none;" id="study-prompt-input" >请随机生成 1 个日语 N5 长句和其对应的中文翻译，输出格式必须是有效的 JSON。请确保输出的 JSON 结构如下所示，且句子和翻译之间用英文逗号分隔，所有句子和翻译都用双引号包围：
+
+                {
+                    "data": [
+                        "句子",
+                        "翻译"
+                    ]
+                }
+                
+                请只输出上述 JSON 格式的内容，不要添加任何其他文字、解释或注释。如果输出不符合这个格式，请重新生成。   
+            </textarea>
+            <!-- <textarea class="editable" id="editable-content" placeholder="在这里粘贴你的文字..."></textarea> -->
+
+            <div class="editable" contenteditable="true" id="editable-content" placeholder="在这里粘贴你的文字..."></div>
+
+            <div class="output" id="output"></div>
+        </div>
+        <div class="column" id="ai-output-column">
+            <div class="input-float-btns">
+                <button id="ai-copy" style="margin-right: 5px;">复制</button>
+                <button id="ai-clear-btn">重置</button>
+            </div>
+            <div class="output" id="ai-output">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-overlay">
+
+        <div class="prompt-modal" id="prompt-modal">
+            <span class="close" id="close-modal-btn">&times;</span>
+            <h4>全局prompt</h4>
+            <textarea id="prompt-input" rows="8" cols="50" placeholder="在这里输入你的 Prompt..."
+                style="background-color: #2d333b; color: #c9d1d9;"></textarea>
+    
+            <h4>子任务prompt</h4>
+            <textarea id="sub-prompt-input" rows="8" cols="50" placeholder="在这里输入你的 Prompt..."
+                style="background-color: #2d333b; color: #c9d1d9;"></textarea>
+        </div>
+    </div>
+    <div class="floatmenu" style="display: none;">
+        <button class="float-re-update">再次生成</button>
+        <button class="float-edit">编辑</button>
+        <button class="float-del">删除</button>
+    </div>
+    <div id="modal" class="modal" style="display: none;"></div>
+</body>
+
+</html>
